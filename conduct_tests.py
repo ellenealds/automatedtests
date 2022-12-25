@@ -73,7 +73,7 @@ def run_all_tests(df):
             question2_type = df[question2].dtype
             
             # Conduct the appropriate test based on the data types
-            if question1_type == 'float' and question2_type == 'float':
+            if question1_type == 'float64' and question2_type == 'float64':
                 corr, p_value = stats.pearsonr(df[question1], df[question2])
                 test = 'Pearson correlation'
                 statistic = corr
@@ -82,11 +82,11 @@ def run_all_tests(df):
                 chi2, p_value = stats.chi2_contingency(contingency_table)
                 test = 'Chi-square test of independence'
                 statistic = chi2
-            elif question1_type == 'float' and question2_type == 'object':
+            elif question1_type == 'float64' and question2_type == 'object':
                 t, p_value = stats.ttest_ind(df[df[question2] == df[question2].unique()[0]][question1], df[df[question2] == df[question2].unique()[1]][question1])
                 test = 'Independent t-test'
                 statistic = t
-            elif question1_type == 'object' and question2_type == 'float':
+            elif question1_type == 'object' and question2_type == 'float64':
                 f, p_value = stats.f_oneway(df[df[question1] == df[question1].unique()[0]][question2], df[df[question1] == df[question1].unique()[1]][question2])
                 test = 'One-way ANOVA'
                 statistic = f
