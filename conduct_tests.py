@@ -89,6 +89,6 @@ def run_all_tests(df):
         statistic = f
 
     # Add the results to the DataFrame
-    results = results.append({'question1': question1, 'question2': question2, 'test': test, 'statistic': statistic, 'p_value': p_value, 'count': df[question1].count(), 'mean': df[question1].mean(), 'sum': df[question1].sum()}, ignore_index=True)
+    results = results.append({'question1': question1, 'question2': question2, 'test': test, 'statistic': statistic, 'p_value': p_value}, ignore_index=True)
 
     return results, combinations
