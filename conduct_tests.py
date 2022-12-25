@@ -21,7 +21,7 @@ def conduct_tests(df, question1, question2):
   question2_type = df[question2].dtype
 
   # If both questions are continuous variables, conduct a Pearson correlation test
-  if question1_type == 'float' and question2_type == 'float':
+  if question1_type == 'float64' and question2_type == 'float64':
     corr, p_value = stats.pearsonr(df[question1], df[question2])
     results = results.append({'test': 'Pearson correlation', 'statistic': corr, 'p_value': p_value}, ignore_index=True)
  
@@ -32,12 +32,12 @@ def conduct_tests(df, question1, question2):
     results = results.append({'test': 'Chi-square test of independence', 'statistic': chi2, 'p_value': p_value}, ignore_index=True)
   
   # If one question is continuous and the other is categorical, conduct an independent t-test
-  elif question1_type == 'float' and question2_type == 'object':
+  elif question1_type == 'float64' and question2_type == 'object':
     t, p_value = stats.ttest_ind(df[df[question2] == df[question2].unique()[0]][question1], df[df[question2] == df[question2].unique()[1]][question1])
     results = results.append({'test': 'Independent t-test', 'statistic': t, 'p_value': p_value}, ignore_index=True)
   
   # If one question is categorical and the other is continuous, conduct a one-way ANOVA
-  elif question1_type == 'object' and question2_type == 'float':
+  elif question1_type == 'object' and question2_type == 'float64':
     f, p_value = stats.f_oneway(df[df[question1] == df[question1].unique()[0]][question2], df[df[question1] == df[question1].unique()[1]][question2])
     results = results.append({'test': 'One-way ANOVA', 'statistic': f, 'p_value': p_value}, ignore_index=True)
 
