@@ -17,8 +17,9 @@ def main():
   # identify the column types, display the column name and type
 
   st.write(df.dtypes)
-  results_all = run_all_tests(df)
+  results_all, combinations = run_all_tests(df)
   st.write(results_all)
+  st.write(combinations)
 
   # Get the list of questions in the DataFrame
   questions = df.columns[1:]
@@ -32,14 +33,6 @@ def main():
 
    # Display the results
   st.write(results)
-
-
-
-  
-
-
-
- 
 
 if __name__ == '__main__':
   main()
