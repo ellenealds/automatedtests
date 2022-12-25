@@ -1,0 +1,31 @@
+import streamlit as st
+import pandas as pd
+from conduct_tests import conduct_tests
+
+def main():
+  st.title('Statistical Tests')
+
+  # Allow the user to upload a CSV file
+  uploaded_file = st.file_uploader('Upload a CSV file', type='csv')
+  if uploaded_file is None:
+    st.write('Please upload a CSV file to continue.')
+    return
+
+  # Load the CSV file into a DataFrame
+  df = pd.read_csv(uploaded_file)
+
+  # Get the list of questions in the DataFrame
+  questions = df.columns[1:]
+
+  # Allow the user to select two questions
+  question1 = st.selectbox('Select the first question', questions)
+  question2 = st.selectbox('Select the second question', questions)
+
+  # Conduct the tests
+  results = conduct_tests(df, question1, question2)
+
+  # Display the results
+  st.write(results)
+
+if __name__ == '__main__':
+  main()
