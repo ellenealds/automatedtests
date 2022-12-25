@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from conduct_tests import conduct_tests
+from conduct_tests import conduct_tests, run_all_tests
 
 def main():
   st.title('Statistical Tests')
@@ -13,6 +13,8 @@ def main():
 
   # Load the CSV file into a DataFrame
   df = pd.read_csv(uploaded_file)
+  results_all = run_all_tests(df)
+  st.write(results_all)
 
   # Get the list of questions in the DataFrame
   questions = df.columns[1:]
@@ -24,8 +26,18 @@ def main():
   # Conduct the tests
   results = conduct_tests(df, question1, question2)
 
-  # Display the results
+   # Display the results
   st.write(results)
+
+
+
+  
+
+
+
+ 
 
 if __name__ == '__main__':
   main()
+
+
