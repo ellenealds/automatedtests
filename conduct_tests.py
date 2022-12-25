@@ -79,7 +79,7 @@ def run_all_tests(df):
                 statistic = corr
             elif question1_type == 'object' and question2_type == 'object':
                 contingency_table = pd.crosstab(df[question1], df[question2])
-                chi2, p, dof, expected = stats.chi2_contingency(contingency_table)
+                chi2, p_value = stats.chi2_contingency(contingency_table)
                 test = 'Chi-square test of independence'
                 statistic = chi2
             elif question1_type == 'float' and question2_type == 'object':
