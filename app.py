@@ -13,6 +13,8 @@ def main():
 
   # Load the CSV file into a DataFrame
   df = pd.read_csv(uploaded_file)
+  # identify the column types, display the column name and type
+  st.write(df.dtypes)
   results_all = run_all_tests(df)
   st.write(results_all)
 
