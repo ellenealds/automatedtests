@@ -13,8 +13,7 @@ def main():
 
   # Load the CSV file into a DataFrame
   df = pd.read_csv(uploaded_file)
-  # convert all int64 to float64
-  df = df.astype('float64')
+
   # identify the column types, display the column name and type
 
   st.write(df.dtypes)
